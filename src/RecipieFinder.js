@@ -7,7 +7,7 @@ class RecipieFinder extends Component{
     constructor(){
         super();
         this.state = {
-            recipies:[]
+            recipies:[{meals:[{strMeal:"Search for a meal and look up its ingredients"}]}]
         };
     }
     fetchResult = async (query)=>{
@@ -25,10 +25,16 @@ class RecipieFinder extends Component{
                 //TODO : Handle the null condition
                 results = JSON.parse(this.responseText);
                 try{state.recipies.pop();}catch(err){}
-                
+                if(results.meals!=null){
                 state.recipies.push(results);
+                console.log(results);
                 context.setState(state);
-                console.log(context.state);
+                }else{
+                    results['meals']=""
+                    
+                }
+                
+                // console.log(context.state);
             }
         }
        await request.send();
@@ -46,11 +52,13 @@ class RecipieFinder extends Component{
         return(
             <div>
                 <RecipieSearch fetchResult={this.fetchResult}/>
-                {
+             <div style={{marginTop:30}}>  {
                     this.state.recipies.map((element,index)=>{
-                        return <SearchResultDisplay data={element.meals[0]} key={index}/>
+                        return <SearchResultDisplay  data={element.meals[0]} key={index}/>
                     })
                 }
+
+            </div> 
             </div>
             
 
