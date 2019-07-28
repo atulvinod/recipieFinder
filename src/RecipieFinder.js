@@ -1,19 +1,22 @@
 import React,{Component} from 'react';
 import RecipieSearch from './RecipieSearch'
 import SearchResultDisplay from './SearchResultDisplay';
-import $ from 'jquery';
+
 class RecipieFinder extends Component{
 
     constructor(){
         super();
+        // Initail state of the App
         this.state = {
             recipies:[{meals:[{strMeal:"Type a Dish Name to Search for its Ingredients"}]}]
         };
     }
+
+    //Function to fetch the data from the API
     fetchResult = async (query)=>{
         let results;
         let state=this.state;
-       let context = this;
+        let context = this;
        
         console.log(`Fetch Query ${query}`);
         let request = new XMLHttpRequest();
@@ -22,9 +25,13 @@ class RecipieFinder extends Component{
             if(this.readyState==4){
             
                 
-                //TODO : Handle the null condition
+                //To Handle the null condition
                 results = JSON.parse(this.responseText);
+
+                //Pop the already present data in the state array
                 try{state.recipies.pop();}catch(err){}
+
+                //Check if the data is null, if null , display the error message
                 if(results.meals!=null){
                 state.recipies.push(results);
                 console.log(results);
@@ -50,7 +57,7 @@ class RecipieFinder extends Component{
 
 
     render(){
-        // console.log(this.state);
+       
         return(
             <div>
                 <RecipieSearch fetchResult={this.fetchResult}/>

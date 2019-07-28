@@ -6,6 +6,8 @@ class SearchResultDisplay extends Component {
         super();
         this.state = {setFavourite:false};
     }
+
+    //To change the state of the component when the heart button is clicked 
     onHeartClick = ()=>{
         const state = this.state;
         state['setFavourite'] = true;
@@ -14,18 +16,27 @@ class SearchResultDisplay extends Component {
 
     render() {
 
+        // Conditions to check the data passed to the component
         if (this.props.data.strMeal === "Type a Dish Name to Search for its Ingredients") {
+
+            //The initial state of the component
             return (
                 <div style={{ textAlign: 'center', fontWeight: 'bold' }}>{this.props.data.strMeal}</div>
             )
         }else if(this.props.data.strMeal === "No data has been received"){
+
+            // When no data is received
             return (
                 <div style={{ textAlign: 'center', fontWeight: 'bold' }}>{this.props.data.strMeal}</div>
             )
 
         }else {
+
+            //If data is recieved from the API, then render the componenet
             let mealData = this.props.data;
 
+
+            //We create an ingredients array, to store the data 
             let ingredients = [];
             for(let i=1;i<=20;i++){
 
@@ -38,7 +49,7 @@ class SearchResultDisplay extends Component {
                 }
                
             }
-            console.log(ingredients);
+            // console.log(ingredients);
             return (
                 <div className="container">
                     <div className="heading">
@@ -46,7 +57,7 @@ class SearchResultDisplay extends Component {
                     </div>
                      
                         <div className="imagePane inline">
-                            <img src={mealData.strMealThumb}></img>
+                            <img src={mealData.strMealThumb} alt="Recipie"></img>
                         </div>
                         <div className="dataPane inline">
                             <p><i>Category of Meal :- </i>{mealData.strCategory}</p>

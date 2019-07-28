@@ -5,10 +5,14 @@ constructor(){
     super();
     this.state = {search:""};
 }
+
+// Function  to get the results from the query
 getResult = (event)=>{
     event.preventDefault();
     this.props.fetchResult(this.state.search);
 }
+
+// Function to set the search query 
 setQuery = (event)=>{
     const state = this.state;
     state['search'] = event.target.value;
