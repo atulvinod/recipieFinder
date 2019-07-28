@@ -7,6 +7,7 @@ constructor(){
 }
 getResult = (event)=>{
     event.preventDefault();
+    this.props.fetchResult(this.state.search);
 }
 setQuery = (event)=>{
     const state = this.state;

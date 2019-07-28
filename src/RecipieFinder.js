@@ -9,16 +9,22 @@ class RecipieFinder extends Component{
         this.state = {};
     }
     fetchResult = (query)=>{
-        
+        let results;
+        console.log(`Fetch Query ${query}`);
         let request = new XMLHttpRequest();
         request.open('GET','https://www.themealdb.com/api/json/v1/1/search.php?s='+query);
         request.onreadystatechange = function(){
             if(this.readyState==4){
-                console.log(this.responseText)
+                // console.log(this.responseText);
+                results = JSON.parse(this.responseText);
+                console.log(results);
+                
             }
         }
         request.send();
+
     }
+
 
 
     render(){
