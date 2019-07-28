@@ -14,11 +14,16 @@ class SearchResultDisplay extends Component {
 
     render() {
 
-        if (this.props.data.strMeal === "Search for a meal and look up its ingredients") {
+        if (this.props.data.strMeal === "Type a Dish Name to Search for its Ingredients") {
             return (
                 <div style={{ textAlign: 'center', fontWeight: 'bold' }}>{this.props.data.strMeal}</div>
             )
-        } else {
+        }else if(this.props.data.strMeal === "No data has been received"){
+            return (
+                <div style={{ textAlign: 'center', fontWeight: 'bold' }}>{this.props.data.strMeal}</div>
+            )
+
+        }else {
             let mealData = this.props.data;
 
             let ingredients = [];

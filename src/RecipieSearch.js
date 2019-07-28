@@ -22,8 +22,8 @@ render(){
             <h4>Recipie Finder</h4>
             <div>
                 <form onSubmit={this.getResult}>
-                    <input name="search" id="search" placeholder="Enter the name of the dish" onChange={this.setQuery}/>
-                    <button> Get Ingredients</button>
+                    <input name="search" id="search" placeholder="Enter the name of the dish" onChange={this.setQuery} style={{textAlign:'center'}}/>
+                    <button> Get Recipie</button>
                 </form>
             </div>
         </div>

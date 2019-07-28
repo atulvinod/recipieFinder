@@ -7,7 +7,7 @@ class RecipieFinder extends Component{
     constructor(){
         super();
         this.state = {
-            recipies:[{meals:[{strMeal:"Search for a meal and look up its ingredients"}]}]
+            recipies:[{meals:[{strMeal:"Type a Dish Name to Search for its Ingredients"}]}]
         };
     }
     fetchResult = async (query)=>{
@@ -30,8 +30,10 @@ class RecipieFinder extends Component{
                 console.log(results);
                 context.setState(state);
                 }else{
-                    results['meals']=""
-                    
+                    results={meals:[{strMeal:"No data has been received"}]};
+                    state.recipies.push(results);
+                    console.log(results);
+                    context.setState(state);
                 }
                 
                 // console.log(context.state);
