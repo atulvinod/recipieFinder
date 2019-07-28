@@ -13,6 +13,9 @@ class SearchResultDisplay extends Component {
         state['setFavourite'] = true;
         this.setState(state);
     }
+    componentWillReceiveProps(){
+        this.setState({setFavourite:false});
+    }
 
     render() {
 
@@ -34,7 +37,7 @@ class SearchResultDisplay extends Component {
 
             //If data is recieved from the API, then render the componenet
             let mealData = this.props.data;
-
+            // this.setState({setFavourite:false});
 
             //We create an ingredients array, to store the data 
             let ingredients = [];
