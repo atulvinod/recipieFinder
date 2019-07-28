@@ -6,32 +6,51 @@ class RecipieFinder extends Component{
 
     constructor(){
         super();
-        this.state = {};
+        this.state = {
+            recipies:[]
+        };
     }
-    fetchResult = (query)=>{
+    fetchResult = async (query)=>{
         let results;
+        let state=this.state;
+       let context = this;
+       
         console.log(`Fetch Query ${query}`);
         let request = new XMLHttpRequest();
         request.open('GET','https://www.themealdb.com/api/json/v1/1/search.php?s='+query);
         request.onreadystatechange = function(){
             if(this.readyState==4){
-                // console.log(this.responseText);
-                results = JSON.parse(this.responseText);
-                console.log(results);
+            
                 
+                //TODO : Handle the null condition
+                results = JSON.parse(this.responseText);
+                try{state.recipies.pop();}catch(err){}
+                
+                state.recipies.push(results);
+                context.setState(state);
+                console.log(context.state);
             }
         }
-        request.send();
+       await request.send();
+     
+     
+        
+        
 
     }
 
 
 
     render(){
+        // console.log(this.state);
         return(
             <div>
                 <RecipieSearch fetchResult={this.fetchResult}/>
-                <SearchResultDisplay/>
+                {
+                    this.state.recipies.map((element,index)=>{
+                        return <SearchResultDisplay data={element.meals[0]} key={index}/>
+                    })
+                }
             </div>
             
 

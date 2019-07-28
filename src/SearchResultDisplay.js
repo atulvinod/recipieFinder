@@ -1,15 +1,13 @@
 import React,{Component} from 'react';
+// import RecipieFinder from './RecipieFinder';
 class SearchResultDisplay extends Component{
     constructor(){
         super();
         this.state = {};
     }
-    componentDidMount(){
-        this.setState(this.props.data);
-        console.log("Form Search Result"+this.state);
-    }
+   
 render(){
-    console.log("From Search Result"+this.state);
+console.log(this.props.data);
     return(
         <div></div>
     )
